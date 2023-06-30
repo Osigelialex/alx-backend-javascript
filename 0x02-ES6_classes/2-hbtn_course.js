@@ -34,10 +34,10 @@ export default class HolbertonCourse {
   }
 
   get length() {
-    return this.length;
+    return this._length;
   }
 
   get students() {
-    return this.students;
+    return this._students;
   }
 }
