@@ -7,7 +7,15 @@ export default class Building {
       throw new Error('Cannot instantiate Abstract class');
     }
 
-    this._sqft = sqft;
+    this.sqft = sqft;
+  }
+
+  set sqft(sqft) {
+    if (typeof sqft === 'number') {
+      this._sqft = sqft;
+    } else {
+      throw new TypeError('Sqft must be a Number');
+    }
   }
 
   get sqft() {
