@@ -7,7 +7,7 @@ export default class Building {
       throw new Error('Cannot instantiate Abstract class');
     }
 
-    this.sqft = sqft;
+    this._sqft = sqft;
   }
 
   get sqft() {
