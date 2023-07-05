@@ -21,6 +21,7 @@ const student2: Student = {
 
 const studentList: Student[] = [student1, student2];
 
+const bodyElement: HTMLBodyElement = document.querySelector('body');
 const tableElement: HTMLTableElement = document.createElement('table');
 
 studentList.forEach((student: Student) => {
@@ -34,4 +35,5 @@ studentList.forEach((student: Student) => {
   tableRow.appendChild(firstNameData);
   tableRow.appendChild(locationData);
   tableElement.appendChild(tableRow);
+  bodyElement.appendChild(tableElement);
 });
