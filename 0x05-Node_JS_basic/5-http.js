@@ -12,11 +12,10 @@ const app = http.createServer((req, res) => {
 
   switch (url) {
     case '/':
-      res.end('Hello Holberton School!');
+      res.end('Hello Holberton School!\n');
       break;
     case '/students':
       fs.readFile(path, 'utf-8', (err, data) => {
-        res.write('This is the list of our students\n');
         if (err) {
           res.write('Cannot load the database');
           res.end();
@@ -43,22 +42,18 @@ const app = http.createServer((req, res) => {
 
           numberOfStudents += 1;
         }
-
+        res.write('This is the list of our students\n');
         res.write(`Number of students: ${numberOfStudents}\n`);
         for (const field in fields) {
           if (field) {
             res.write(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`);
           }
         }
-
         res.end();
       });
       break;
-
     default:
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.write('Page not found');
-      res.end();
+      res.end('Hello Holberton School!\n');
   }
 });
 
