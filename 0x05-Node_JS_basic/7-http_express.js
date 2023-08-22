@@ -11,11 +11,6 @@ app.get('/', (req, res) => {
 app.get('/students', (req, res) => {
   res.write('This is the list of our students\n');
 
-  if (process.argv.length !== 3) {
-    res.send('Cannot load the database');
-    return;
-  }
-
   const filePath = process.argv[2];
   fs.readFile(filePath, 'utf-8', (err, data) => {
     if (err) {
