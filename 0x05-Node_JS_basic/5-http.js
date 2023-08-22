@@ -12,13 +12,13 @@ const app = http.createServer((req, res) => {
 
   switch (url) {
     case '/':
-      res.end('Hello Holberton School!\n');
+      res.end('Hello Holberton School!');
       break;
     case '/students':
       fs.readFile(path, 'utf-8', (err, data) => {
         res.write('This is the list of our students\n');
         if (err) {
-          res.write('Cannot load the database\n');
+          res.write('Cannot load the database');
           res.end();
         }
         let numberOfStudents = 0;
