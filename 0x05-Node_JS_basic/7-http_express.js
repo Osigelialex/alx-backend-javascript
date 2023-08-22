@@ -25,7 +25,7 @@ app.get('/students', (req, res) => {
     let numberOfStudents = 0;
     let studentData = data.split('\n');
     studentData = studentData.slice(1, studentData.length);
-    const fields = {};
+    const fields = { CS: [], SWE: [] };
 
     for (let student of studentData) {
       if (student === '') break;
@@ -38,20 +38,14 @@ app.get('/students', (req, res) => {
 
       if (field in fields) {
         fields[field].push(firstName);
-      } else {
-        fields[field] = [firstName];
       }
 
       numberOfStudents += 1;
     }
 
     res.write(`Number of students: ${numberOfStudents}\n`);
-    for (const field in fields) {
-      if (field) {
-        res.write(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`);
-      }
-    }
-
+    res.write(`Number of students in CS: ${fields.CS.length}. List: ${fields.CS.join(', ')}\n`);
+    res.write(`Number of students in SWE: ${fields.SWE.length}. List: ${fields.SWE.join(', ')}`);
     res.end();
   });
 });
