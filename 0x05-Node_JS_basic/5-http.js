@@ -15,8 +15,6 @@ const app = http.createServer((req, res) => {
   }
 
   if (url === '/students') {
-    res.write('This is the list of our students\n');
-
     if (process.argv.length !== 3) {
       res.end('Cannot load the database');
       return;
@@ -24,6 +22,7 @@ const app = http.createServer((req, res) => {
 
     const filePath = process.argv[2];
     fs.readFile(filePath, 'utf-8', (err, data) => {
+      res.write('This is the list of our students\n');
       if (err) {
         res.end('Cannot load the database');
         return;
