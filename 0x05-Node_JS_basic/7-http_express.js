@@ -42,7 +42,7 @@ app.get('/students', (req, res) => {
     res.write(`Number of students: ${numberOfStudents}\n`);
     res.write(`Number of students in CS: ${fields.CS.length}. List: ${fields.CS.join(', ')}\n`);
     res.write(`Number of students in SWE: ${fields.SWE.length}. List: ${fields.SWE.join(', ')}`);
-    res.end();
+    res.send();
   });
 });
 
