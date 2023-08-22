@@ -51,4 +51,4 @@ app.get('/students', (req, res) => {
 });
 
 app.listen(port);
-module.export = app;
+module.exports = app;
