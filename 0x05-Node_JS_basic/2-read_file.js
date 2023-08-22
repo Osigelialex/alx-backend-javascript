@@ -1,41 +1,36 @@
 const fs = require('fs');
-const readline = require('readline');
 
 const countStudents = (path) => {
-  if (path !== 'database.csv') throw new Error('Cannot load database');
+  if (!fs.existsSync(path)) {
+    throw new Error('Cannot load the database');
+  }
 
-  let count = 0;
-  const csMajors = [];
-  const sweMajors = [];
+  const file = fs.readFileSync(path).toString();
+  const lines = file.split('\r');
+  let lineCount = 0;
 
-  const fileStream = fs.createReadStream(path);
-  const rl = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
-  });
+  const csStudents = [];
+  const sweStudents = [];
 
-  rl.on('line', (line) => {
-    const field = line.split(',')[3];
-    const firstName = line.split(',')[0];
+  for (const line of lines) {
+    const components = line.split(',');
+    const firstName = components[0].trim();
+    const field = components[3];
 
     if (field === 'CS') {
-      csMajors.push(firstName);
-      count += 1;
+      csStudents.push(firstName);
+      lineCount += 1;
     }
+
     if (field === 'SWE') {
-      sweMajors.push(firstName);
-      count += 1;
+      sweStudents.push(firstName);
+      lineCount += 1;
     }
-  });
+  }
 
-  rl.on('close', () => {
-    const csCount = csMajors.length;
-    const sweCount = sweMajors.length;
-
-    console.log(`Number of students: ${count}`);
-    console.log(`Number of students in CS: ${csCount}. List: ${csMajors.join(', ')}`);
-    console.log(`Number of students in SWE: ${sweCount}. List: ${sweMajors.join(', ')}`);
-  });
+  console.log(`Number of students: ${lineCount}`);
+  console.log(`Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}`);
+  console.log(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`);
 };
 
 module.exports = countStudents;
