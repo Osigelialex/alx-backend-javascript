@@ -3,9 +3,9 @@ const fs = require('fs');
 const countStudents = (path) => {
   try {
     const file = fs.readFileSync(path, 'utf8').toString();
-    let lines = file.split('\r\n');
+    let lines = file.split('\n');
     lines = lines.slice(1, lines.length);
-    let numberOFStudents = 0;
+    let numberOfStudents = 0;
     const fields = {};
 
     for (let line of lines) {
@@ -15,7 +15,7 @@ const countStudents = (path) => {
       const firstName = components[0].trim();
       const field = components[3];
 
-      if (field === undefined || firstName === undefined || field === undefined) break;
+      if (firstName === undefined || field === undefined) break;
 
       if (field in fields) {
         fields[field].push(firstName);
@@ -23,10 +23,10 @@ const countStudents = (path) => {
         fields[field] = [firstName];
       }
 
-      numberOFStudents += 1;
+      numberOfStudents += 1;
     }
 
-    console.log(`Number of students: ${numberOFStudents}`);
+    console.log(`Number of students: ${numberOfStudents}`);
     for (const field in fields) {
       if (field) {
         console.log(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`);
