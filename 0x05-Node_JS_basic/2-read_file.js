@@ -9,7 +9,7 @@ const countStudents = (path) => {
   let lines = file.split('\r\n');
   lines = lines.slice(1, lines.length);
   let numberOFStudents = 0;
-  const fields = {};
+  const fields = { CS: [], SWE: [] };
 
   for (let line of lines) {
     if (line === '') break;
@@ -20,8 +20,6 @@ const countStudents = (path) => {
 
     if (field in fields) {
       fields[field].push(firstName);
-    } else {
-      fields[field] = [firstName];
     }
 
     numberOFStudents += 1;
