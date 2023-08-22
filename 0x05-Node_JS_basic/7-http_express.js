@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 
 const app = express();
-const port = 1247;
+const port = 1245;
 
 app.get('/', (req, res) => {
   res.end('Hello Holberton School!');
