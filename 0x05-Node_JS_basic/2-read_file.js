@@ -11,8 +11,9 @@ const countStudents = (path) => {
   let numberOFStudents = 0;
   const fields = {};
 
-  for (const line of lines) {
+  for (let line of lines) {
     if (line === '') break;
+    line = line.trim();
     const components = line.split(',');
     const firstName = components[0].trim();
     const field = components[3];
