@@ -23,7 +23,9 @@ describe('calculateNumber', () => {
     })
     it('Should handle zero division properly', () => {
       const testCase1 = calculateNumber('DIVIDE', 0.5, 0.3);
+      const testCase2 = calculateNumber('DIVIDE', 5, 0);
       assert.equal(testCase1, 'Error');
+      assert.equal(testCase2, 'Error');
     });
   });
   describe('#subtract', () => {
@@ -33,7 +35,7 @@ describe('calculateNumber', () => {
     });
     it('Should subtract larger numbers from smaller ones', () => {
       const testCase1 = calculateNumber('SUBTRACT', 5, -10);
-      assert.equal(testCase1, -15);
+      assert.equal(testCase1, 15);
     })
   })
 })
