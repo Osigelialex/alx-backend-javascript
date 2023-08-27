@@ -33,9 +33,13 @@ describe('calculateNumber', () => {
       const testCase1 = calculateNumber('SUBTRACT', -2, -2);
       assert.equal(testCase1, 0);
     });
-    it('Should subtract larger numbers from smaller ones', () => {
+    it('Should subtract negative from positive', () => {
       const testCase1 = calculateNumber('SUBTRACT', 5, -10);
       assert.equal(testCase1, 15);
+    })
+    it('Should subtract bigger number from smaller number', () => {
+      const testCase1 = calculateNumber('SUBTRACT', 4.5, 5.5);
+      assert.equal(testCase1, -1);
     })
   })
 })
